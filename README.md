@@ -52,11 +52,7 @@ Create a `backend/.env` file and add the following values:
 
 ```env
 PORT=3000
-DB_USER=your_postgres_user
-DB_HOST=localhost
-DB_DATABASE=budget_tracker
-DB_PASSWORD=your_postgres_password
-DB_PORT=5432
+DATABASE_URL=your_neondb_connectionString
 
 JWT_SECRET=your_access_token_secret
 JWT_EXPIRES_IN=15m
