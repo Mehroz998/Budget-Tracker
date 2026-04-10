@@ -4,14 +4,18 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const pool = new pg.Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE || "budget_tracker",
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT || 5432,
-  max: 20,
-  idleTimeoutMillis: 10000,
-  connectionTimeoutMillis: 10000,
+  // user: process.env.DB_USER,
+  // host: process.env.DB_HOST,
+  // database: process.env.DB_DATABASE || "budget_tracker",
+  // password: process.env.DB_PASSWORD,
+  // port: process.env.DB_PORT || 5432,
+  // max: 20,
+  // idleTimeoutMillis: 10000,
+  // connectionTimeoutMillis: 10000,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 pool

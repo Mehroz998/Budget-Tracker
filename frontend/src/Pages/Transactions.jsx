@@ -40,6 +40,12 @@ export default function Transactions() {
     setPage(1);
   }, [filterType, categoryFilter, dateFilter, startDate, endDate]);
 
+  const numberFormatter = (num) =>
+    new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(Number(num) || 0);
+
   const fetchTransactions = async () => {
     try {
       setLoading(true);
@@ -337,7 +343,7 @@ export default function Transactions() {
                     }
                     style={{ fontWeight: "600" }}
                   >
-                    ${parseFloat(trx.amount).toFixed(2)}
+                    ${numberFormatter(trx.amount)}
                   </td>
                   <td>
                     <div className="flex gap-2">

@@ -46,6 +46,13 @@ export default function Dashboard() {
   const [endDate, setEndDate] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
+
+  const numberFormatter = (num) =>
+    new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(Number(num) || 0);
+
   const fetchSummary = async () => {
     try {
       setLoading(true);
@@ -81,8 +88,10 @@ export default function Dashboard() {
       <div className="page-header" style={{ alignItems: "flex-start" }}>
         <div>
           <h2 className="flex items-center gap-2">
-            Dashboard Overview 
-            {loading && <Loader2 size={18} className="animate-spin text-primary" />}
+            Dashboard Overview
+            {loading && (
+              <Loader2 size={18} className="animate-spin text-primary" />
+            )}
           </h2>
           <p>Welcome! Here's your financial summary.</p>
         </div>
@@ -160,14 +169,16 @@ export default function Dashboard() {
           <div className="metric-title">
             <Wallet size={18} /> Total Balance
           </div>
-          <div className="metric-value">${data.metrics.balance.toFixed(2)}</div>
+          <div className="metric-value">
+            ${numberFormatter(data.metrics.balance)}
+          </div>
         </div>
         <div className="glass-panel metric-card">
           <div className="metric-title">
             <TrendingUp size={18} className="text-success" /> Total Income
           </div>
           <div className="metric-value text-success">
-            ${data.metrics.income.toFixed(2)}
+            ${numberFormatter(data.metrics.income.toFixed(2))}
           </div>
         </div>
         <div className="glass-panel metric-card">
@@ -175,7 +186,7 @@ export default function Dashboard() {
             <TrendingDown size={18} className="text-danger" /> Total Expense
           </div>
           <div className="metric-value text-danger">
-            ${data.metrics.expense.toFixed(2)}
+            ${numberFormatter(data.metrics.expense.toFixed(2))}
           </div>
         </div>
       </div>
