@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Loader2, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { Pencil, Trash2, Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import api from "../api/axios";
 import TransactionFormModal from "../Components/TransactionFormModal";
+import { Bars } from "react-loader-spinner";
 
 const CATEGORIES = [
   "All",
@@ -138,16 +139,27 @@ export default function Transactions() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Bars
+          height="40"
+          width="40"
+          color="#6366f1"
+          ariaLabel="bars-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="page-header">
         <div>
-          <h2 className="flex items-center gap-2">
-            Transactions History
-            {loading && (
-              <Loader2 size={18} className="animate-spin text-primary" />
-            )}
-          </h2>
+          <h2 className="flex items-center gap-2">Transactions History</h2>
           <p>View and manage all your transactions.</p>
         </div>
         <button

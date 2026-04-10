@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
 import { Plus, Wallet, TrendingUp, TrendingDown, Filter } from "lucide-react";
 import {
   PieChart,
@@ -77,22 +76,11 @@ export default function Dashboard() {
     fetchSummary();
   }, [dateFilter, startDate, endDate]);
 
-  // Soft loader on header instead of unmounting everything
-  // Unmounting destroys the date inputs!
-
-  console.log("start Date : ", startDate);
-  console.log("end Date : ", endDate);
-
   return (
     <div>
       <div className="page-header" style={{ alignItems: "flex-start" }}>
         <div>
-          <h2 className="flex items-center gap-2">
-            Dashboard Overview
-            {loading && (
-              <Loader2 size={18} className="animate-spin text-primary" />
-            )}
-          </h2>
+          <h2 className="flex items-center gap-2">Dashboard Overview</h2>
           <p>Welcome! Here's your financial summary.</p>
         </div>
         <div className="flex gap-4 items-center">
