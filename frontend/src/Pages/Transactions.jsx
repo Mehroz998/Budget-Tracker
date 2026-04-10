@@ -139,21 +139,21 @@ export default function Transactions() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-full">
-        <Bars
-          height="40"
-          width="40"
-          color="#6366f1"
-          ariaLabel="bars-loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex items-center justify-center h-full">
+  //       <Bars
+  //         height="40"
+  //         width="40"
+  //         color="#6366f1"
+  //         ariaLabel="bars-loading"
+  //         wrapperStyle={{}}
+  //         wrapperClass=""
+  //         visible={true}
+  //       />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
@@ -296,6 +296,22 @@ export default function Transactions() {
         className="glass-panel"
         style={{ overflowX: "auto", marginBottom: "1rem" }}
       >
+        {/* {loading && (
+          <div
+            className="flex items-center justify-center h-full"
+            style={{ margin: "10px 0" }}
+          >
+            <Bars
+              height="40"
+              width="40"
+              color="#6366f1"
+              ariaLabel="bars-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          </div>
+        )} */}
         <table className="data-table">
           <thead>
             <tr>
@@ -313,6 +329,29 @@ export default function Transactions() {
               transition: "opacity 0.2s ease",
             }}
           >
+            {loading && (
+              <tr>
+                <td colSpan="6">
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: "3rem 0",
+                      width: "100%",
+                    }}
+                  >
+                    <Bars
+                      height="40"
+                      width="40"
+                      color="#6366f1"
+                      ariaLabel="bars-loading"
+                      visible={true}
+                    />
+                  </div>
+                </td>
+              </tr>
+            )}
             {transactions.length === 0 && !loading ? (
               <tr>
                 <td
@@ -323,6 +362,7 @@ export default function Transactions() {
                 </td>
               </tr>
             ) : (
+              !loading &&
               transactions.map((trx) => (
                 <tr key={trx.id}>
                   <td>{new Date(trx.date).toLocaleDateString()}</td>

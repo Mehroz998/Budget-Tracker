@@ -11,7 +11,12 @@ const app = express();
 
 //use basic MiddleWares
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://budget-tracker-frontend-iota.vercel.app",
+    credentials: true,
+  }),
+);
 app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 
